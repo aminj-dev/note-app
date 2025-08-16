@@ -9,7 +9,7 @@ function App() {
       <div className="w-screen min-h-screen flex justify-center">
         <div className="w-9/10">
           <h1 className="text-3xl font-bold my-4">Notes</h1>
-          <div className="flex flex-3">
+          <div className="grid grid-cols-3 gap-6">
             <AddNote />
             <NoteList />
           </div>

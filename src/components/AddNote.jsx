@@ -16,8 +16,6 @@ export const AddNote = () => {
   return (
     <div className="bg-[#4DD0E1] flex flex-col w-[300px] h-[200px] justify-center rounded-2xl">
       <textarea
-        name=""
-        id=""
         className="h-6/10 mx-3 mb-4 outline-none border-none resize-none"
         placeholder="type to add note..."
         onChange={(e) => setTextareaValue(e.target.value)}

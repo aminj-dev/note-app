@@ -8,9 +8,11 @@ export const ContextProvider = ({ children }) => {
   const reducer = (state, action) => {
     switch (action.type) {
       case "handleAddNote":
+        const d = new Date()
         const newNote = {
           id: Date.now(),
           body: action.payload.textAreaValue,
+          date: d.toDateString()
         };
         return [...state, newNote];
       default:
