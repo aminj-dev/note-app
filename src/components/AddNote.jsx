@@ -10,11 +10,11 @@ export const AddNote = () => {
         type: "handleAddNote",
         payload: { textAreaValue: textareaValue },
       });
-      setTextareaValue("")
-    } else return textareaValue
+      setTextareaValue("");
+    } else return textareaValue;
   };
   return (
-    <div className="bg-[#4DD0E1] flex flex-col w-[300px] h-[200px] justify-center rounded-2xl">
+    <div className="bg-[#4DD0E1] flex flex-col w-[300px] md:w-[25vw] h-[200px] justify-center rounded-2xl">
       <textarea
         className="h-6/10 mx-3 mb-4 outline-none border-none resize-none"
         placeholder="type to add note..."
