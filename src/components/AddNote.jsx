@@ -4,19 +4,29 @@ import { Context } from "../Context/Cotext";
 export const AddNote = () => {
   const { dispatch } = useContext(Context);
   const [textareaValue, setTextareaValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
+
   const handleAddNote = () => {
     if (textareaValue !== "") {
       dispatch({
         type: "handleAddNote",
-        payload: { textAreaValue: textareaValue },
+        payload: { textAreaValue: textareaValue, title: inputValue },
       });
       setTextareaValue("");
+      setInputValue("")
     } else return textareaValue;
   };
   return (
-    <div className="bg-[#4DD0E1] flex flex-col w-[300px] md:w-[25vw] h-[200px] justify-center rounded-2xl">
+    <div className="bg-[#4DD0E1] flex flex-col w-[300px] md:w-[25vw] h-[200px] justify-center rounded-2xl shadow-2xl">
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="title..."
+        className="mx-3 my-2 outline-none border-none"
+      />
       <textarea
-        className="h-6/10 mx-3 mb-4 outline-none border-none resize-none"
+        className="h-5/10 mx-3 mb-4 outline-none border-none resize-none"
         placeholder="type to add note..."
         onChange={(e) => setTextareaValue(e.target.value)}
         value={textareaValue}
