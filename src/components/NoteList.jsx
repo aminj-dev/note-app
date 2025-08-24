@@ -1,27 +1,37 @@
 import React, { useContext } from "react";
-import { Context } from "../Context/Cotext";
+import { MainContext } from "../Context/MainCotext";
 import { FaTrashAlt } from "react-icons/fa";
 
 export const NoteList = () => {
-  const { state, dispatch } = useContext(Context);
+  const { state, dispatch } = useContext(MainContext);
 
-  
+  const inputHandler = (value, id) => {
+    dispatch({
+      type: "handleChangeTitle",
+      payload: { id: id, title: value },
+    });
+  };
+  const textareaHandler = (value, id) => {
+    dispatch({
+      type: "handleChangeNote",
+      payload: { id: id, textAreaValue: value },
+    });
+  };
 
   return state.map((note) => (
     <div
       key={note.id}
-      className={`flex flex-col w-[300px] md:w-[25vw] h-[200px] justify-center rounded-2xl shadow-2xl`}
+      className="flex flex-col w-[300px] md:w-[25vw] h-[200px] justify-center rounded-2xl shadow-2xl"
       style={{ backgroundColor: note.backGround }}
     >
-      <span className="mx-3 my-2 font-bold">{note.title}</span>
+      <input
+        value={note.title}
+        onChange={(e) => inputHandler(e.target.value, note.id)}
+        className="mx-3 my-2 font-bold outline-none border-none"
+      />
       <textarea
         value={note.body}
-        onChange={(e) =>
-          dispatch({
-            type: "handleChangeNote",
-            payload: { id: note.id, textAreaValue: e.target.value },
-          })
-        }
+        onChange={(e) => textareaHandler(e.target.value, note.id)}
         className="h-5/10 mx-3 mb-4 outline-none border-none resize-none"
       ></textarea>
       <div className="w-9/10 flex justify-between">

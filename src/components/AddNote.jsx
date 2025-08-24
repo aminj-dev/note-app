@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import { Context } from "../Context/Cotext";
+import { MainContext } from "../Context/MainCotext";
 
 export const AddNote = () => {
-  const { dispatch } = useContext(Context);
+  const { dispatch } = useContext(MainContext);
   const [textareaValue, setTextareaValue] = useState("");
   const [inputValue, setInputValue] = useState("");
 
@@ -13,9 +13,10 @@ export const AddNote = () => {
         payload: { textAreaValue: textareaValue, title: inputValue },
       });
       setTextareaValue("");
-      setInputValue("")
+      setInputValue("");
     } else return textareaValue;
   };
+
   return (
     <div className="bg-[#4DD0E1] flex flex-col w-[300px] md:w-[25vw] h-[200px] justify-center rounded-2xl shadow-2xl">
       <input
@@ -34,7 +35,7 @@ export const AddNote = () => {
       <div className="flex justify-end mr-4">
         <button
           onClick={handleAddNote}
-          className="bg-[#252525] text-white w-fit px-4 py-1 rounded-2xl cursor-pointer"
+          className="bg-[#252525] text-white w-fit px-4 py-1 rounded-[0.75rem] cursor-pointer"
         >
           Save
         </button>

@@ -1,12 +1,11 @@
 import { createContext, useEffect, useReducer } from "react";
 import { getInitialState, updateLocalStorage } from "./LocalStorage";
 
-export const Context = createContext();
+export const MainContext = createContext();
 
-export const ContextProvider = ({ children }) => {
+export const MainContextProvider = ({ children }) => {
   const initialState = [];
-
-  const colors = ["#FFF176","#AED581","#81D4FA","#BA68C8","#FFCC80"];
+  const colors = ["#FFF176", "#AED581", "#81D4FA", "#BA68C8", "#FFCC80"];
 
   const reducer = (state, action) => {
     switch (action.type) {
@@ -17,7 +16,7 @@ export const ContextProvider = ({ children }) => {
           title: action.payload.title,
           body: action.payload.textAreaValue,
           date: d.toDateString(),
-          backGround : colors[Math.floor(Math.random()* colors.length)]
+          backGround: colors[Math.floor(Math.random() * colors.length)],
         };
         return [...state, newNote];
       case "handleChangeNote":
@@ -31,6 +30,12 @@ export const ContextProvider = ({ children }) => {
           (note) => note.id !== action.payload.id
         );
         return (state = updatedNoteList);
+      case "handleChangeTitle":
+        return state.map((note) =>
+          note.id === action.payload.id
+            ? { ...note, title: action.payload.title }
+            : note
+        );
       default:
         return state;
     }
@@ -41,8 +46,10 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     updateLocalStorage(state);
   }, [state]);
-
+  
   return (
-    <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
+    <MainContext.Provider value={{ state, dispatch }}>
+      {children}
+    </MainContext.Provider>
   );
 };
