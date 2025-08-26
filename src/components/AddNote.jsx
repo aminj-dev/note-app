@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
-import { MainContext } from "../Context/MainCotext";
+import { useState } from "react";
+import { UseNote } from "../Context/MainCotext";
 
 export const AddNote = () => {
-  const { dispatch } = useContext(MainContext);
+  const { dispatch } = UseNote();
   const [textareaValue, setTextareaValue] = useState("");
   const [inputValue, setInputValue] = useState("");
 
@@ -24,10 +24,10 @@ export const AddNote = () => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="title..."
-        className="mx-3 my-2 outline-none border-none"
+        className="mx-3 my-2 outline-none border-none bg-transparent"
       />
       <textarea
-        className="h-5/10 mx-3 mb-4 outline-none border-none resize-none"
+        className="h-5/10 mx-3 mb-4 outline-none border-none resize-none bg-transparent"
         placeholder="type to add note..."
         onChange={(e) => setTextareaValue(e.target.value)}
         value={textareaValue}

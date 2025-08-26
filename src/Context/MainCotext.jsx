@@ -1,5 +1,6 @@
 import { createContext, useEffect, useReducer } from "react";
 import { getInitialState, updateLocalStorage } from "./LocalStorage";
+import { useContext } from "react";
 
 export const MainContext = createContext();
 
@@ -53,3 +54,5 @@ export const MainContextProvider = ({ children }) => {
     </MainContext.Provider>
   );
 };
+
+export const UseNote = () => useContext(MainContext);
