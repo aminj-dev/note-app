@@ -1,11 +1,18 @@
+import { useEffect } from "react";
 import { UseTheme } from "../Context/ThemeContext";
 import { AddNote } from "./AddNote";
 import { NoteList } from "./NoteList";
 import { MdDarkMode } from "react-icons/md";
 import { MdLightMode } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
 
 export const AppContent = () => {
   const { darkMode, setDarkMode } = UseTheme();
+  const notify = () => toast.info("Welcome to Note App", {autoClose: 1500, position: "bottom-left"});
+
+  useEffect(() => {
+    notify()
+  }, [])
 
   return (
     <div className="max-w-screen min-h-screen flex justify-center bg-amber-50 text-black dark:bg-[#252525] dark:text-white ">
@@ -19,6 +26,7 @@ export const AppContent = () => {
           <NoteList />
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
